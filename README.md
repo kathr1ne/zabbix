@@ -22,6 +22,7 @@
     * 配置php环境  
     apache 和 nginx 配置php环境有所不同  
         * apache  
+        * nginx
     ```
     如果选择apache 需要修改apache的配置文件httpd.conf以得到PHP的解析
     1. 在LoadModule中添加：LoadModule php5_module     modules/libphp5.so
@@ -35,4 +36,3 @@
     4. 重启httpd 自行验证PHP环境是否配置成功
     ```  
 
-        * nginx
