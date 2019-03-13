@@ -15,7 +15,11 @@
     yum install -y php  # 安装PHP
     ```
 * NGINX  
-    [nginx官网yum源配置]http://nginx.org/en/linux_packages.html#RHEL-CentOS
+    [nginx官网yum源配置] http://nginx.org/en/linux_packages.html#RHEL-CentOS
     ```Bash
     yum install -y nginx
     ```
+    * 配置php环境
+    apache 和 nginx 配置php环境有所不同
+	* apache
+	* nginx
