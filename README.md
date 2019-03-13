@@ -22,25 +22,25 @@
     * 配置php环境  
     apache 和 nginx 配置php环境有所不同  
         * apache  
-    ```Bash
-    # apache
-    需要修改apache的配置文件httpd.conf以得到PHP的解析
-    1. 在LoadModule中添加：LoadModule php5_module     modules/libphp5.so
-    2. 在AddType application/x-gzip .gz .tgz下面添加:
-	AddType application/x-httpd-php .php
-	AddType application/x-httpd-php-source .phps
-    3. 在DirectoryIndex增加 index.php 以便apache识别PHP格式的index
-	<IfModule dir_module>  
-	    DirectoryIndex index.html index.php  
-	</IfModule>
-    4. 重启httpd 自行验证PHP环境是否配置成功
+        ```Bash
+        # apache
+        需要修改apache的配置文件httpd.conf以得到PHP的解析
+        1. 在LoadModule中添加：LoadModule php5_module     modules/libphp5.so
+        2. 在AddType application/x-gzip .gz .tgz下面添加:
+            AddType application/x-httpd-php .php
+            AddType application/x-httpd-php-source .phps
+        3. 在DirectoryIndex增加 index.php 以便apache识别PHP格式的index
+            <IfModule dir_module>  
+                DirectoryIndex index.html index.php  
+            </IfModule>
+        4. 重启httpd 自行验证PHP环境是否配置成功
 
-    # nginx
-    通过php-fpm设置
-    yum install -y php-fpm  # 安装php-fpm
-    cp /etc/php-fpm.d/www.conf{,.backup}
-    sed -i '/^user/s/apache/nginx/' /etc/php-fpm.d/www.conf
-    sed -i '/^group/s/apache/nginx/' /etc/php-fpm.d/www.conf
-    ```  
+        # nginx
+        通过php-fpm设置
+        yum install -y php-fpm  # 安装php-fpm
+        cp /etc/php-fpm.d/www.conf{,.backup}
+        sed -i '/^user/s/apache/nginx/' /etc/php-fpm.d/www.conf
+        sed -i '/^group/s/apache/nginx/' /etc/php-fpm.d/www.conf
+        ```  
         * nginx
 
