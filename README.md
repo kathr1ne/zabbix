@@ -32,6 +32,5 @@
     <IfModule dir_module>  
 	DirectoryIndex index.html index.php  
     </IfModule>
-    4. 重启httpd 自行验证PHP环境是否配置成功  
-```  
+    4. 重启httpd 自行验证PHP环境是否配置成功```  
         * nginx
