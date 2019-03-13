@@ -24,7 +24,8 @@
         * apache  
         * nginx
     ```
-    如果选择apache 需要修改apache的配置文件httpd.conf以得到PHP的解析
+    #apache 
+    需要修改apache的配置文件httpd.conf以得到PHP的解析
     1. 在LoadModule中添加：LoadModule php5_module     modules/libphp5.so
     2. 在AddType application/x-gzip .gz .tgz下面添加:
     AddType application/x-httpd-php .php
