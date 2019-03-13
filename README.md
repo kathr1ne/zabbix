@@ -68,3 +68,49 @@
         systemctl restart php-fpm   # 重启并设置开机启动
         systemctl enable php-fpm
         ```
+
+* zabbix-server
+    参考zabbix官方文档操作步骤即可：
+    <https://www.zabbix.com/documentation/4.0/zh/manual/installation/install_from_packages/rhel_centos>
+
+  * 安装zabbix-server和zabbix-web
+
+    ```Bash
+    rpm -ivh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+    yum install -y zabbix-server-mysql # 安装 Zabbix server并使用 MySQL 数据库
+    yum install -y zabbix-web-mysql    # 安装 Zabbix 前端并使用 MySQL 数据库
+    ```
+
+  * mysql设置
+
+    ```MySQL
+    mysql -uroot -p<password>
+    create database zabbix character set utf8 collate utf8_bin;
+    grant all privileges on zabbix.* to zabbix@localhost identified by '<password>';
+    quit;
+    ```
+
+    ```Bash
+    # 使用 MySQL 来导入 Zabbix server 的初始数据库 schema 和数据
+    zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix
+    ```
+
+  * zabbix配置修改
+
+    ```Bash
+    编辑 zabbix_server.conf 或 zabbix_proxy.conf 文件以使用已创建的数据库
+    # vim /etc/zabbix/zabbix_server.conf
+    DBHost=localhost
+    DBName=zabbix
+    DBUser=zabbix
+    DBPassword=<password>
+    ```
+
+    ```Bash
+    配置完成之后 重启 nginx或者httpd 访问web即可 nginx的zabbix.conf见附件 apache的自带该配置文件
+    注意：
+    1. 使用nginx 需要修改/etc/zabbix/web/目录权限 默认为apache用户的权限
+    chown nginx.nginx -R /etc/zabbix/web/
+    2. web配置界面如果 Next Step如果点击没有反应 执行下面权限 默认为：root.apache
+    chown root.nginx -R /var/lib/php/session/
+    ```
