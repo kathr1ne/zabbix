@@ -11,7 +11,11 @@
     mysql_secure_installation	# improve MySQL installation security
     ```
 * PHP  
-    yum install -y php
+    ```Bash
+    yum install -y php  # 安装PHP
+    ```
 * NGINX  
     [nginx官网yum源配置]http://nginx.org/en/linux_packages.html#RHEL-CentOS
+    ```Bash
     yum install -y nginx
+    ```
