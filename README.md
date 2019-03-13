@@ -11,5 +11,5 @@
     2. PHP  
     yum install -y php
     3. NGINX  
-[nginx官网yum源配置]http://nginx.org/en/linux_packages.html#RHEL-CentOS
+    [nginx官网yum源配置](http://nginx.org/en/linux_packages.html#RHEL-CentOS)
     yum install -y nginx
