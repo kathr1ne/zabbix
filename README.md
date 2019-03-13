@@ -23,6 +23,7 @@
     ```
 
 * NGINX
+
     nginx官网yum源配置链接： <http://nginx.org/en/linux_packages.html#RHEL-CentOS>
 
     ```Bash
@@ -70,6 +71,7 @@
         ```
 
 * zabbix-server
+
     参考zabbix官方文档操作步骤即可：
     <https://www.zabbix.com/documentation/4.0/zh/manual/installation/install_from_packages/rhel_centos>
 
