@@ -21,5 +21,5 @@
     ```
     * 配置php环境  
     apache 和 nginx 配置php环境有所不同  
->> apache
+>> apache  
 >> nginx
