@@ -35,5 +35,8 @@
 	DirectoryIndex index.html index.php  
     </IfModule>
     4. 重启httpd 自行验证PHP环境是否配置成功
+
+    # nginx
+    [参考] https://medium.com/@iven00000000/%E6%96%BCcentos7%E5%AE%89%E8%A3%9D-nginx-php7-php-fpm-laravel5-6-df8631681acf
     ```  
 
