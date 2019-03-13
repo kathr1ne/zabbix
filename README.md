@@ -22,7 +22,6 @@
     * 配置php环境  
     apache 和 nginx 配置php环境有所不同  
         * apache  
-        * nginx
     ```Bash
     # apache
     需要修改apache的配置文件httpd.conf以得到PHP的解析
@@ -43,4 +42,5 @@
     sed -i '/^user/s/apache/nginx/' /etc/php-fpm.d/www.conf
     sed -i '/^group/s/apache/nginx/' /etc/php-fpm.d/www.conf
     ```  
+        * nginx
 
