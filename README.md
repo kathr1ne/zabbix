@@ -19,7 +19,6 @@
     ```Bash
     yum install -y nginx
     ```
-    * 配置php环境  
-    apache 和 nginx 配置php环境有所不同  
-	- apache
-	- nginx
+    * 配置php环境  apache 和 nginx 配置php环境有所不同  
+	* apache
+	* nginx
