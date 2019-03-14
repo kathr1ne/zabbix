@@ -137,4 +137,9 @@
     配置成功之后 使用默认用户名密码登录即可
     User: Admin
     Passwd: <your password>
+
+    访问web: http://192.168.xx.xx/profile.php以修改密码 设置语言等
+    # 字体乱码问题
+    从windows拷贝一个简体字体到服务器 比如: simkai.ttf # 附件直接给出
+    mv simkai.ttf /usr/share/zabbix/fonts/graphfont.ttf  # 替换掉即可
     ```
