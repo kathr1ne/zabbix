@@ -2,7 +2,7 @@
 
     zabbix 4.0 简要安装记录
     系统环境：centos 7.x
-    默认系统已进行相关初始化：iptables已开放相关端口 配置network 禁用selinx等
+    默认系统已进行相关初始化：ntp时间同步 iptables已开放相关端口 配置network 禁用selinx等
 
 ## LNMP环境
 
