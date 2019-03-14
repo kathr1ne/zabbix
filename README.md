@@ -71,12 +71,12 @@
         systemctl enable php-fpm
         ```
 
-* zabbix-server
+## zabbix-server
 
-    参考zabbix官方文档操作步骤即可：
-    <https://www.zabbix.com/documentation/4.0/zh/manual/installation/install_from_packages/rhel_centos>
+参考zabbix官方文档操作步骤即可：
+<https://www.zabbix.com/documentation/4.0/zh/manual/installation/install_from_packages/rhel_centos>
 
-  * 安装zabbix-server和zabbix-web
+* 安装zabbix-server和zabbix-web
 
     ```Bash
     rpm -ivh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
@@ -84,7 +84,7 @@
     yum install -y zabbix-web-mysql    # 安装 Zabbix 前端并使用 MySQL 数据库
     ```
 
-  * mysql设置
+* MySQL配置
 
     ```MySQL
     mysql -uroot -p<password>
@@ -98,7 +98,7 @@
     zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix
     ```
 
-  * zabbix配置修改
+* zabbix配置修改
 
     ```Bash
     编辑 zabbix_server.conf 或 zabbix_proxy.conf 文件以使用已创建的数据库
@@ -116,4 +116,25 @@
     chown nginx.nginx -R /etc/zabbix/web/
     2. web配置界面如果 Next Step如果点击没有反应 执行下面权限 默认为：root.apache
     chown root.nginx -R /var/lib/php/session/
+    ```
+
+* setup web界面配置
+
+    ```Bash
+    根据web界面 跟着点下一步配置即可
+    Check of pre-requisites 步骤 如果有Required为Fail的 根据建议修改/etc/php.ini文件配置 然后重启php-fpm即可
+    cp /etc/php.ini{,.backup}
+    vim /etc/php.ini    ...  # 修改建议配置
+    sytemctl restart php-fpm
+
+    如果配置mysql的时候 点NextStep出现502错误
+    nginx错误日志: upstream sent too big header while reading response header from upstream
+    vim /etc/nginx/nginx.conf # 修改http段 加入如下配置 重启nginx
+    fastcgi_buffer_size 128k;
+    fastcgi_buffers 4 256k;
+    fastcgi_busy_buffers_size 256k;
+
+    配置成功之后 使用默认用户名密码登录即可
+    User: Admin
+    Passwd: <your password>
     ```
