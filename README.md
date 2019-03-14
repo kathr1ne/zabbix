@@ -13,6 +13,7 @@
     ```Bash
     yum install -y mariadb-server   # 安装mysql数据库 7.x默认为mariadb
     systemctl restart mariadb    # 启动
+    systemctl enable mariadb     # 设置开机启动
     mysql_secure_installation    # improve MySQL installation security
     ```
 
@@ -28,6 +29,8 @@
 
     ```Bash
     yum install -y nginx
+    systemctl enable nginx
+    systemctl restart nginx    # 后面修改了文件记得重启 或者reload
     ```
 
   * 配置php环境
