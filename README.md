@@ -210,3 +210,4 @@ tips：
 
 1. 数据库调优以及zabbix相关调优 参考相关文档进行
 2. 确保防火墙开放相关使用端口 以及处理好selinux
+3. 官方中文文档链接 非常详细 <https://www.zabbix.com/documentation/4.0/zh/manual>
