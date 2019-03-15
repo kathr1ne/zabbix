@@ -171,3 +171,44 @@
   相关配置含义直接看配置文件注释 或者 参考官方文档给出的含义介绍 十分详细  
   [zabbix-agent配置详解] <https://www.zabbix.com/documentation/4.0/zh/manual/appendix/config/zabbix_agentd>  
   [额外参考] <https://blog.51cto.com/lookingdream/1839558>
+
+## zabbix-proxy
+监控机器较多的时候 可以利用zabbix-proxy进行分布式安装
+[详情参考] <https://www.zabbix.com/documentation/4.0/zh/manual/distributed_monitoring/proxies>
+
+```Bash
+rpm -ivh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm    # 下载zabbix repo
+yum install -y zabbix-proxy-mysql    # 安装proxy
+
+# zabbix-proxy需要存储数据 所以需要像安装zabbix-server一样安装数据库 并进行配置
+yum install -y mariadb-server  # 参考zabbix-server部分
+
+# 配置数据库
+shell> mysql -uroot -p<password>
+mysql> create database zabbix_proxy character set utf8 collate utf8_bin;
+mysql> grant all privileges on zabbix_proxy.* to zabbix_proxy@localhost identified by '<password>';
+mysql> quit;
+
+# 按照需求调整配置文件
+sed '/^#/d;/^$/d' /etc/zabbix/zabbix_proxy.conf     # 下面简单的配置示例
+Server=192.168.40.132
+Hostname=ProxyVM03      # 唯一的代理名称 确保server知道该值
+LogFile=/var/log/zabbix/zabbix_proxy.log
+LogFileSize=0
+PidFile=/var/run/zabbix/zabbix_proxy.pid
+SocketDir=/var/run/zabbix
+DBName=zabbix_proxy
+DBUser=zabbix_proxy
+DBPassword=zabbix_proxy
+SNMPTrapperFile=/var/log/snmptrap/snmptrap.log
+Timeout=4
+ExternalScripts=/usr/lib/zabbix/externalscripts
+LogSlowQueries=3000
+
+# 相关配置完成之后 就可以去web添加代理 开始监控主机
+```
+
+tips：
+
+1. 数据库调优以及zabbix相关调优 参考相关文档进行
+2. 确保防火墙开放相关使用端口 以及处理好selinx
