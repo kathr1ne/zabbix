@@ -209,4 +209,4 @@ LogSlowQueries=3000
 tips：
 
 1. 数据库调优以及zabbix相关调优 参考相关文档进行
-2. 确保防火墙开放相关使用端口 以及处理好selinx
+2. 确保防火墙开放相关使用端口 以及处理好selinux
