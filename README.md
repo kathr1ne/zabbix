@@ -168,6 +168,6 @@
     Include=/etc/zabbix/zabbix_agentd.d/*.conf
    ```
 
-  相关配置含义直接看配置文件注释 或者 参考官方文档给出的含义介绍 十分详细
-  [zabbix-agent配置详解] <https://www.zabbix.com/documentation/4.0/zh/manual/appendix/config/zabbix_agentd>
+  相关配置含义直接看配置文件注释 或者 参考官方文档给出的含义介绍 十分详细  
+  [zabbix-agent配置详解] <https://www.zabbix.com/documentation/4.0/zh/manual/appendix/config/zabbix_agentd>  
   [额外参考] <https://blog.51cto.com/lookingdream/1839558>
