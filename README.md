@@ -25,54 +25,52 @@
 
 * NGINX
 
-    nginx官网yum源配置链接： <http://nginx.org/en/linux_packages.html#RHEL-CentOS>
+   nginx官网yum源配置链接： <http://nginx.org/en/linux_packages.html#RHEL-CentOS>
 
-    ```Bash
-    yum install -y nginx
-    systemctl enable nginx
-    systemctl restart nginx    # 后面修改了文件记得重启 或者reload
-    ```
+   ```Bash
+   yum install -y nginx
+   systemctl enable nginx
+   systemctl restart nginx    # 后面修改了文件记得重启 或者reload
+   ```
 
-  * 配置php环境
+   配置php环境  apache 和 nginx 配置php环境有所不同
 
-    apache 和 nginx 配置php环境有所不同
+  * Apache
 
-    * apache
+    需要修改apache的配置文件httpd.conf以得到PHP的解析
 
-        需要修改apache的配置文件httpd.conf以得到PHP的解析
+     ```Bash
+     1. 在LoadModule中添加：LoadModule php5_module     modules/libphp5.so
+     2. 在AddType application/x-gzip .gz .tgz下面添加:
+         AddType application/x-httpd-php .php
+         AddType application/x-httpd-php-source .phps
+     3. 在DirectoryIndex增加 index.php 以便apache识别PHP格式的index
+         <IfModule dir_module>
+             DirectoryIndex index.html index.php
+         </IfModule>
+     4. 重启httpd 自行验证PHP环境是否配置成功
 
-        ```Bash
-        1. 在LoadModule中添加：LoadModule php5_module     modules/libphp5.so
-        2. 在AddType application/x-gzip .gz .tgz下面添加:
-            AddType application/x-httpd-php .php
-            AddType application/x-httpd-php-source .phps
-        3. 在DirectoryIndex增加 index.php 以便apache识别PHP格式的index
-            <IfModule dir_module>
-                DirectoryIndex index.html index.php
-            </IfModule>
-        4. 重启httpd 自行验证PHP环境是否配置成功
+     ```
 
-        ```
+   * Nginx
 
-    * nginx
+     通过php-fpm设置
+     参考文档：<https://medium.com/@iven00000000/%E6%96%BCcentos7%E5%AE%89%E8%A3%9D-nginx-php7-php-fpm-laravel5-6-df8631681acf>
 
-        通过php-fpm设置
-        参考文档：<https://medium.com/@iven00000000/%E6%96%BCcentos7%E5%AE%89%E8%A3%9D-nginx-php7-php-fpm-laravel5-6-df8631681acf>
+     ```Bash
+     yum install -y php-fpm  # 安装php-fpm
+     cp /etc/php-fpm.d/www.conf{,.backup}    # 备份
+     sed -i '/^user/s/apache/nginx/' /etc/php-fpm.d/www.conf     # 修改user和group为nginx
+     sed -i '/^group/s/apache/nginx/' /etc/php-fpm.d/www.conf
+     # 如果要改为使用socket file(预设使用 127.0.0.1:9000) 则需修改如下配置
+     listen = /path/to/unix/socket
+     listen.owner = nobody
+     listen.group = nobody
+     listen.mode = 0666
 
-        ```Bash
-        yum install -y php-fpm  # 安装php-fpm
-        cp /etc/php-fpm.d/www.conf{,.backup}    # 备份
-        sed -i '/^user/s/apache/nginx/' /etc/php-fpm.d/www.conf     # 修改user和group为nginx
-        sed -i '/^group/s/apache/nginx/' /etc/php-fpm.d/www.conf
-        # 如果要改为使用socket file(预设使用 127.0.0.1:9000) 则需修改如下配置
-        listen = /path/to/unix/socket
-        listen.owner = nobody
-        listen.group = nobody
-        listen.mode = 0666
-
-        systemctl restart php-fpm   # 重启并设置开机启动
-        systemctl enable php-fpm
-        ```
+     systemctl restart php-fpm   # 重启并设置开机启动
+     systemctl enable php-fpm
+     ```
 
 ## zabbix-server
 
