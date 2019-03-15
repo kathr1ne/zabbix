@@ -123,7 +123,7 @@
 
 * setup web界面配置
 
-    ```Bash
+   ```Bash
     根据web界面 跟着点下一步配置即可
     Check of pre-requisites 步骤 如果有Required为Fail的 根据建议修改/etc/php.ini文件配置 然后重启php-fpm即可
     cp /etc/php.ini{,.backup}
@@ -146,3 +146,28 @@
     从windows拷贝一个简体字体到服务器 比如: simkai.ttf # 附件直接给出
     mv simkai.ttf /usr/share/zabbix/fonts/graphfont.ttf  # 替换掉即可
     ```
+
+    备注：[zabbix-server配置详解] <https://www.zabbix.com/documentation/4.0/zh/manual/appendix/config/zabbix_server>
+
+## zabbix-agent
+
+  ```Bash
+    # 同样下载yum源仓库（本地安装建议把依赖包全部下载做本地仓库）
+    rpm -ivh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+    yum install -y zabbix-agent    # 安装agent
+    vim /etc/zabbix/zabbix_agentd.conf  # 配置配置文件 调整相关配置
+
+    # 本地简单的测试配置
+    sed '/^#/d;/^$/d' /etc/zabbix/zabbix_agentd.conf
+    PidFile=/var/run/zabbix/zabbix_agentd.pid
+    LogFile=/var/log/zabbix/zabbix_agentd.log
+    LogFileSize=0
+    Server=192.168.40.132
+    ServerActive=192.168.40.132
+    Hostname=vm02
+    Include=/etc/zabbix/zabbix_agentd.d/*.conf
+   ```
+
+  相关配置含义直接看配置文件注释 或者 参考官方文档给出的含义介绍 十分详细
+  [zabbix-agent配置详解] <https://www.zabbix.com/documentation/4.0/zh/manual/appendix/config/zabbix_agentd>
+  [额外参考] <https://blog.51cto.com/lookingdream/1839558>
