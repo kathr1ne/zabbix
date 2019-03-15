@@ -160,7 +160,7 @@
     PidFile=/var/run/zabbix/zabbix_agentd.pid
     LogFile=/var/log/zabbix/zabbix_agentd.log
     LogFileSize=0
-    Server=192.168.40.132
+    Server=192.168.40.132   # Server | Proxy IP 或者 域名
     ServerActive=192.168.40.132
     Hostname=vm02
     Include=/etc/zabbix/zabbix_agentd.d/*.conf
