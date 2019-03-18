@@ -163,6 +163,7 @@
     Server=192.168.40.132   # Server | Proxy IP 或者 域名
     ServerActive=192.168.40.132
     Hostname=vm02
+    Timeout=30
     Include=/etc/zabbix/zabbix_agentd.d/*.conf
    ```
 
@@ -199,14 +200,14 @@ DBName=zabbix_proxy
 DBUser=zabbix_proxy
 DBPassword=zabbix_proxy
 SNMPTrapperFile=/var/log/snmptrap/snmptrap.log
-Timeout=4
+Timeout=30
 ExternalScripts=/usr/lib/zabbix/externalscripts
 LogSlowQueries=3000
 
 # 相关配置完成之后 就可以去web添加代理 开始监控主机
 ```
 
-tips：
+## tips：
 
 1. 数据库调优以及zabbix相关调优 参考相关文档进行
 2. 确保防火墙开放相关使用端口 以及处理好selinux
