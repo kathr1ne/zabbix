@@ -213,5 +213,6 @@ LogSlowQueries=3000
 2. 确保防火墙开放相关使用端口 以及处理好selinux
 3. 官方中文文档链接 非常详细 <https://www.zabbix.com/documentation/4.0/zh/manual>
 4. 自定义自动发现监控 参考 <https://blog.51cto.com/dyc2005/2178939>
-5. zabbix_agent.d 目录：自定义监控示例
-6. zabbix_scripts 目录： 自定义监控 LLD 等相关用到的脚本目录
+5. 目录：zabbix_agent.d  -- 自定义监控示例
+6. 目录：zabbix_scripts -- 自定义监控 LLD 等相关用到的脚本目录
+7. 目录：Alert  -- 企业微信告警参考目录
