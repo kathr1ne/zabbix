@@ -216,3 +216,4 @@ LogSlowQueries=3000
 5. 目录：zabbix_agent.d  -- 自定义监控示例
 6. 目录：zabbix_scripts -- 自定义监控 LLD 等相关用到的脚本目录
 7. 目录：Alert  -- 企业微信告警参考目录
+8. 目录：grafana -- 使用Grafana展示zabbix收集数据的简要介绍
