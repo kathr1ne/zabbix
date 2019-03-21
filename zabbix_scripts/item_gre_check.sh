@@ -7,8 +7,4 @@
 
 dstip=$1
 loss=`ping -w2 -c2 ${dstip} | awk '{gsub(/%/,"",$0);if($0~/packet loss/)print $6}'`
-if [ ${loss} -eq 100 ];then
-    echo "1"
-else
-    echo "0"
-fi
+echo ${loss}
